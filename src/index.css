@@ -2,8 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #root { height: 100%; margin: 0; }
-body { background: radial-gradient(ellipse at 50% 35%, #ffffff 0%, #f6f6f8 70%); }
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+body {
+  background: radial-gradient(ellipse at 50% 35%, #ffffff 0%, #f6f6f8 70%);
+}
 
 /* 1. Horse leaps in */
 .horse {
@@ -11,7 +18,12 @@ body { background: radial-gradient(ellipse at 50% 35%, #ffffff 0%, #f6f6f8 70%);
   transform: translateY(40px) scale(0.9);
   animation: horse-in 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s forwards;
 }
-@keyframes horse-in { to { opacity: 1; transform: none; } }
+@keyframes horse-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
 
 /* 2. UNICORN text wipes in left to right */
 .unicorn-text {
@@ -19,7 +31,12 @@ body { background: radial-gradient(ellipse at 50% 35%, #ffffff 0%, #f6f6f8 70%);
   clip-path: inset(0 100% 0 0);
   animation: text-wipe 1s cubic-bezier(0.6, 0, 0.2, 1) 1.6s forwards;
 }
-@keyframes text-wipe { to { opacity: 1; clip-path: inset(0 0 0 0); } }
+@keyframes text-wipe {
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
 
 /* 3. Technologies drops in below */
 .tech-text {
@@ -28,13 +45,63 @@ body { background: radial-gradient(ellipse at 50% 35%, #ffffff 0%, #f6f6f8 70%);
   clip-path: inset(0 0 100% 0);
   animation: tech-drop 0.8s ease-out 2.8s forwards;
 }
-@keyframes tech-drop { to { opacity: 1; transform: none; clip-path: inset(0 0 0 0); } }
+@keyframes tech-drop {
+  to {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0 0 0 0);
+  }
+}
 
-.logo-btn { transition: transform 0.3s ease, filter 0.3s ease; }
-.logo-btn:hover { transform: scale(1.03); filter: drop-shadow(0 12px 24px rgba(220, 0, 0, 0.25)); }
-.logo-btn:active { transform: scale(0.98); }
-.logo-btn:focus-visible { outline: 3px solid #dc0000; outline-offset: 12px; border-radius: 12px; }
+.logo-btn {
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+.logo-btn:hover {
+  transform: scale(1.03);
+  filter: drop-shadow(0 12px 24px rgba(220, 0, 0, 0.25));
+}
+.logo-btn:active {
+  transform: scale(0.98);
+}
+.logo-btn:focus-visible {
+  outline: 3px solid #dc0000;
+  outline-offset: 12px;
+  border-radius: 12px;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .horse, .unicorn-text, .tech-text { animation-duration: 0.01s; animation-delay: 0s; }
+  .horse,
+  .unicorn-text,
+  .tech-text {
+    animation-duration: 0.01s;
+    animation-delay: 0s;
+  }
+}
+
+/* Unicorn watermark in the center, faint, slowly breathing */
+.watermark {
+  opacity: 0;
+  transform: scale(0.9);
+  animation:
+    watermark-in 1.8s ease-out 1s forwards,
+    watermark-breathe 7s ease-in-out 2.8s infinite;
+}
+@keyframes watermark-in {
+  to {
+    opacity: 0.12;
+    transform: scale(1);
+  }
+}
+@keyframes watermark-breathe {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.18;
+    transform: scale(1.04);
+  }
 }

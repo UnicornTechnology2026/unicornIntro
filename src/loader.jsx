@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import loaderVideo from "./assets/loader.mp4";
+import loaderVideo from "./assets/loaderfinal.mp4";
 
 export default function Loader({ fading, onFinish }) {
   const doneRef = useRef(false);
@@ -12,7 +12,7 @@ export default function Loader({ fading, onFinish }) {
 
   // Safety net: if the video can't play or never ends, continue anyway.
   useEffect(() => {
-    const t = setTimeout(finish, 8000);
+    const t = setTimeout(finish, 10000);
     return () => clearTimeout(t);
   }, []);
 

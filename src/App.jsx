@@ -67,6 +67,16 @@ export default function App() {
           {/* Slight dark overlay so the logo stands out */}
           <div className="absolute inset-0 bg-black/30" />
 
+          <div className="pointer-events-none absolute inset-0 z-[5] flex items-center justify-center">
+            <img
+              src={horse}
+              alt=""
+              aria-hidden="true"
+              draggable="false"
+              className="watermark h-auto w-[80vw] max-w-[620px] select-none"
+            />
+          </div>
+
           {/* Logo block */}
           <div className="relative z-10 flex min-h-screen items-start justify-center px-6 pt-[10vh]">
             <div className="flex w-full max-w-[300px] flex-col items-center sm:max-w-[360px]">
