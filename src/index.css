@@ -12,38 +12,34 @@ body {
   background: radial-gradient(ellipse at 50% 35%, #ffffff 0%, #f6f6f8 70%);
 }
 
-/* 1. Horse leaps in */
-.horse {
-  opacity: 0;
-  transform: translateY(40px) scale(0.9);
-  animation: horse-in 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s forwards;
-}
-@keyframes horse-in {
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* 2. UNICORN text wipes in left to right */
+/* Horse + UNICORN text: hidden behind the loader, then simple fade-in
+   the moment the loader finishes */
+.horse,
 .unicorn-text {
   opacity: 0;
-  clip-path: inset(0 100% 0 0);
-  animation: text-wipe 1s cubic-bezier(0.6, 0, 0.2, 1) 1.6s forwards;
 }
-@keyframes text-wipe {
+.site-started .horse,
+.site-started .unicorn-text {
+  animation: logo-fade 0.8s ease-out forwards;
+}
+@keyframes logo-fade {
+  from {
+    opacity: 0;
+  }
   to {
     opacity: 1;
-    clip-path: inset(0 0 0 0);
   }
 }
 
-/* 3. Technologies drops in below */
+/* Events / Foundations / Infrastructure / Technologies:
+   hidden until the loader finishes, then animate in one by one */
 .tech-text {
   opacity: 0;
   transform: translateY(-10px);
   clip-path: inset(0 0 100% 0);
-  animation: tech-drop 0.8s ease-out 2.8s forwards;
+}
+.site-started .tech-text {
+  animation: tech-drop 0.8s ease-out forwards;
 }
 @keyframes tech-drop {
   to {
@@ -72,27 +68,20 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .horse,
-  .unicorn-text,
-  .tech-text {
+  .site-started .horse,
+  .site-started .unicorn-text,
+  .site-started .tech-text {
     animation-duration: 0.01s;
-    animation-delay: 0s;
+    animation-delay: 0s !important;
   }
 }
 
-/* Unicorn watermark in the center, faint, slowly breathing */
+/* Unicorn watermark: visible immediately, subtle breathing starts after loader */
 .watermark {
-  opacity: 0;
-  transform: scale(0.9);
-  animation:
-    watermark-in 1.8s ease-out 1s forwards,
-    watermark-breathe 7s ease-in-out 2.8s infinite;
+  opacity: 0.12;
 }
-@keyframes watermark-in {
-  to {
-    opacity: 0.12;
-    transform: scale(1);
-  }
+.site-started .watermark {
+  animation: watermark-breathe 7s ease-in-out infinite;
 }
 @keyframes watermark-breathe {
   0%,

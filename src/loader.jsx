@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
-import loaderVideo from "./assets/loaderfinal.mp4";
+import loaderVideo from "./assets/unicornfinal2.mp4";
 
-export default function Loader({ fading, onFinish }) {
+export default function Loader({ onFinish }) {
   const doneRef = useRef(false);
 
   const finish = () => {
@@ -12,16 +12,12 @@ export default function Loader({ fading, onFinish }) {
 
   // Safety net: if the video can't play or never ends, continue anyway.
   useEffect(() => {
-    const t = setTimeout(finish, 10000);
+    const t = setTimeout(finish, 12000);
     return () => clearTimeout(t);
   }, []);
 
   return (
-    <div
-      className={`fixed inset-0 z-50 bg-black transition-opacity duration-700 ease-out ${
-        fading ? "opacity-0 pointer-events-none" : "opacity-100"
-      }`}
-    >
+    <div className="fixed inset-0 z-50 bg-black">
       <video
         className="h-full w-full object-cover"
         src={loaderVideo}
